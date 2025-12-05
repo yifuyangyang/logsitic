@@ -1,8 +1,8 @@
 import numpy as np
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
-
-filename=r"c:\Users\Administrator\Desktop\机器学习\lesson4\testSet.txt"
+filename=r"C:\Users\E507\Documents\GitHub\logsitic\test.txt"
 #=====================
 # 1. 数据读取函数
 #=====================
@@ -31,7 +31,22 @@ def replace_nan_with_mean(X):
 # 3. 主流程
 #=====================
 # 读取训练集
+if __name__ =="__main__":
+    train_filename=r"C:\Users\E507\Desktop\horseColicTraining.txt"
+    train_x,train_y=load_dataset(train_filename)
+    test_filename=r"C:\Users\E507\Desktop\horseColicTest.txt"
+    test_x,test_y=load_dataset(test_filename)
 
+    train_x=replace_nan_with_mean(train_x)
+    test_x=replace_nan_with_mean(test_x)
+    model=LogisticRegression(random_state=42,max_iter=1000)
+    model.fit(train_x,train_y)
+
+    y_pred =model.predict(test_x)
+
+    accuracy = accuracy_score(test_y,y_pred)
+    print(f"测试集准确率：{accuracy:.4f}")
+    print(f"测试集准确率百分比：{accuracy*100:.2f}%")
 
 # 读取测试集
 
