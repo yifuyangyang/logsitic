@@ -48,6 +48,7 @@ X_test = replace_nan_with_mean(X_test)
 #=====================
 
 model = LogisticRegression()
+model = LogisticRegression(solver="saga")
 model.fit(X_train, y_train)
 
 #=====================
