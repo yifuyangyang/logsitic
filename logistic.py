@@ -40,7 +40,7 @@ X_test,y_test=load_dataset(filename_test)
 #=====================
 # 4. 构建并训练逻辑回归模型
 #=====================
-clf=LogisticRegression(solver="saga",max_iter=1000)
+clf=LogisticRegression(solver="saga",max_iter=3000)
 clf.fit(X_train,y_train)
 #=====================
 # 5. 测试集预测
