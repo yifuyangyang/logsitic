@@ -2,8 +2,8 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 
 
-filename=r"C:\Users\E507\Documents\GitHub\logsitic\horseColicTraining.txt"
-t_filename=r"C:\Users\E507\Documents\GitHub\logsitic\horseColicTraining.txt"
+filename=r"D:\学习\机器学习\logsitic\horseColicTest.txt"
+t_filename=r"D:\学习\机器学习\logsitic\horseColicTraining.txt"
 #=====================
 # 1. 数据读取函数
 #=====================
@@ -40,7 +40,7 @@ X_test, y_test = load_dataset(filename)
 #=====================
 # 4. 构建并训练逻辑回归模型
 #=====================
-clf = LogisticRegression(solver="saga", max_iter=8000)
+clf = LogisticRegression(solver="saga", max_iter=3000)
 clf.fit(X_train, y_train)
 #=====================
 # 5. 测试集预测
@@ -52,4 +52,4 @@ pred = clf.predict(X_test)
 #=====================
 acc=np.mean(pred==y_test)
 
-print(acc)
+print(f'测试集准确率为：',acc)
