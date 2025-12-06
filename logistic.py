@@ -1,8 +1,8 @@
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 
+filename = r"horseColicTest.txt"
 
-filename=r"c:\Users\Administrator\Desktop\机器学习\lesson4\testSet.txt"
 #=====================
 # 1. 数据读取函数
 #=====================
@@ -31,22 +31,30 @@ def replace_nan_with_mean(X):
 # 3. 主流程
 #=====================
 # 读取训练集
-
+train_file = "horseColicTraining.txt"
+X_train, y_train = load_dataset(train_file)
+X_train = replace_nan_with_mean(X_train)
 
 # 读取测试集
-
+test_file = "horseColicTest.txt"
+X_test, y_test = load_dataset(test_file)
+X_test = replace_nan_with_mean(X_test)
 
 #=====================
 # 4. 构建并训练逻辑回归模型
 #=====================
-
+model = LogisticRegression(max_iter=1000, random_state=42)
+model.fit(X_train, y_train)
 
 #=====================
 # 5. 测试集预测
 #=====================
-
+y_pred = model.predict(X_test)
 
 #=====================
 # 6. 计算准确率
 #=====================
+print("计算准确率：")
+accuracy = np.mean(y_pred == y_test) * 100
+print(f"测试集准确率: {accuracy:.2f}%")
 
