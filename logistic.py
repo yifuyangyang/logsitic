@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 
 
-filename=r"c:\Users\Administrator\Desktop\机器学习\lesson4\testSet.txt"
+
 #=====================
 # 1. 数据读取函数
 #=====================
@@ -31,22 +31,26 @@ def replace_nan_with_mean(X):
 # 3. 主流程
 #=====================
 # 读取训练集
-
+t_filename=r"C:\Users\E507\Desktop\logsitic\horseColicTraining.txt"
+train_x,train_y=load_dataset(t_filename)
 
 # 读取测试集
-
+test_filename=r"C:\Users\E507\Desktop\logsitic\horseColicTest.txt"
+test_x,test_y=load_dataset(test_filename)
 
 #=====================
 # 4. 构建并训练逻辑回归模型
 #=====================
-
+clf=LogisticRegression(solver="saga",max_iter=3000)
+clf.fit(train_x,train_y)
 
 #=====================
 # 5. 测试集预测
 #=====================
-
+pred=clf.predict(test_x)
 
 #=====================
 # 6. 计算准确率
 #=====================
-
+acc=np.mean(pred==test_y)
+print(acc)
